@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<div class="blog-index">
+  {% assign index = true %}
+  {% for post in paginator.posts %}
+  {% assign content = post.content %}
+    <article>
+      {% include article.html %}
+    </article>
+  {% endfor %}
+  <nav class="pagination">
+    <div>
+      {% if paginator.next_page %}
+        <a class="prev" href="{{paginator.next_page}}">&larr; Older</a>
+      {% endif %}
+      <a href="/blog/archives">Blog Archives</a>
+      {% if paginator.previous_page %}
+      <a class="next" href="{{paginator.previous_page}}">Newer &rarr;</a>
+      {% endif %}
+    </div>
+  </nav>
+</div>
+<aside class="sidebar">
+  {% if site.blog_index_asides.size %}
+   {% include asides/recent_posts.html %}
+   {% include custom/asides/archive.html %}
+  {% else %}
+    {% include asides/recent_posts.html %}
+  {% endif %}
+</aside>
+
+<!-- delete later-->
